@@ -3,6 +3,7 @@ package org.example;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
@@ -20,6 +21,8 @@ public class TestCases {
 
     WebDriver create_driver( char browser){
         if(browser == 'c'){
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--disable-notifications");
             System.setProperty("webdriver.chrome.driver","C:\\Users\\pr0je\\Desktop\\Spring2024\\CEN4072 - Software Testing\\FinalGroupProject\\src\\main\\java\\org\\example\\chromedriver.exe");
             return new ChromeDriver();
         }else if(browser == 'f'){
@@ -77,36 +80,41 @@ public class TestCases {
         shadowChild = shadowChild.findElement(By.cssSelector("faceplate-tabpanel > auth-flow-modal > div.w-100 > faceplate-tracker > button"));
         shadowChild.click();
 
-        Thread.sleep(6000);
+        Thread.sleep(9000);
         driver.switchTo().window(mainWindow);
     } // End of test_sign_in()
 
     @Test (priority = 2)
 void search_test() throws InterruptedException {
-        Thread.sleep(500);
-        WebElement searchBar = driver.findElement(By.id("header-search-bar"));
-        searchBar.sendKeys("Software Engineering");
-        Thread.sleep(500);
+        WebElement searchBar = driver.findElement(By.cssSelector("body > shreddit-app > reddit-header-large > reddit-header-action-items > header > nav"));
+        searchBar = searchBar.findElement(By.xpath("//div[2]/div/div/search-dynamic-id-cache-controller"));
+        shadowHost = searchBar.findElement(By.cssSelector("reddit-search-large"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+        shadowChild = shadowRoot.findElement(By.cssSelector("div"));
+        searchBar = shadowChild.findElement(By.id("search-input"));
+
+        searchBar.sendKeys("r/softwareengineering");
         searchBar.sendKeys(Keys.RETURN);
 } // End of search_test()
 
 @Test (priority = 3)
-void join_subreddit_test(){
+void join_subreddit_test() throws InterruptedException {
 
-WebElement link = driver.findElement(By.id("2x-container"));
-link = link.findElement(By.id("SHORTCUT_FOCUSABLE_DIV"));
-link = link.findElement(By.id("AppRouter-main-content"));
-link = link.findElement(By.cssSelector("div > div"));
-link = link.findElement(By.xpath("//div[1]"));
-link = link.findElement(By.cssSelector("div > div"));
-link = link.findElement(By.xpath("//div[1]"));
-link = link.findElement(By.xpath("//div[1]"));
-link = link.findElement(By.cssSelector("div > div > div > div > div"));
-String textInElement = link.getText();
+    try {
+        // Find the Join button by class name
+        WebElement joinButtonByClass = driver.findElement(By.className("join-btn"));
+        System.out.println("Join button found using class name: " + joinButtonByClass.getText());
+    } catch (Exception e) {
+        System.out.println("Join button not found using class name");
+    }
 
-System.out.println(textInElement);
-//link.click();
-}
-
+    try {
+        // Find the Join button by XPath
+        WebElement joinButtonByXPath = driver.findElement(By.xpath("//html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/div[1]/div[1]/section/div/div[2]/shreddit-subreddit-header-buttons/div/faceplate-tracker/shreddit-join-button/button"));
+        System.out.println("Join button found using XPath: " + joinButtonByXPath.getText());
+    } catch (Exception e) {
+        System.out.println("Join button not found using XPath");
+    }
+    } // END OF join_subreddit_test()
 
 } // END OF TestCases Class
