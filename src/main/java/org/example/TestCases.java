@@ -6,8 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import java.awt.*;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -44,6 +48,7 @@ public class TestCases {
         // Visit Reddit.com
         driver.get("https://www.reddit.com");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 
         String mainWindow = driver.getWindowHandle();
@@ -100,7 +105,33 @@ void search_test() throws InterruptedException {
 @Test (priority = 3)
 void join_subreddit_test() throws InterruptedException {
 
-    try {
+    WebElement element = driver.findElement(By.id("right-sidebar-container"));
+    element = element.findElement(By.cssSelector("div > div > section:nth-child(1) > faceplate-tracker:nth-child(2) > div > faceplate-tracker > a "));
+    element.click();
+
+    // Find Join Btn
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement shadowHost1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("shreddit-app")));
+    shadowHost1.getShadowRoot();
+    WebElement shadowHost2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("dsa-transparency-modal-provider")));
+    shadowHost2.getShadowRoot();
+    WebElement shadowHost3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("shreddit-subreddit-header-buttons")));
+    SearchContext shadowRoot4 = shadowHost3.getShadowRoot();
+    WebElement shadowHost5 = shadowRoot4.findElement(By.cssSelector("shreddit-join-button"));
+    SearchContext shadowRoot5 = shadowHost5.getShadowRoot();
+    WebElement joinButton = shadowRoot5.findElement(By.cssSelector("button"));
+    System.out.println(joinButton.getText());
+    joinButton.click();
+
+    // Redundant -Tryting to get before/after status
+    joinButton = shadowRoot5.findElement(By.cssSelector("button"));
+    System.out.println(joinButton.getText());
+
+
+
+    // button
+
+   /* try {
         // Find the Join button by class name
         WebElement joinButtonByClass = driver.findElement(By.className("join-btn"));
         System.out.println("Join button found using class name: " + joinButtonByClass.getText());
@@ -110,11 +141,14 @@ void join_subreddit_test() throws InterruptedException {
 
     try {
         // Find the Join button by XPath
-        WebElement joinButtonByXPath = driver.findElement(By.xpath("//html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/div[1]/div[1]/section/div/div[2]/shreddit-subreddit-header-buttons/div/faceplate-tracker/shreddit-join-button/button"));
+
         System.out.println("Join button found using XPath: " + joinButtonByXPath.getText());
     } catch (Exception e) {
         System.out.println("Join button not found using XPath");
-    }
+     }*/
+
+
+
     } // END OF join_subreddit_test()
 
 } // END OF TestCases Class
