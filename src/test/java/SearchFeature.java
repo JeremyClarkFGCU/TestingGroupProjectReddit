@@ -42,6 +42,7 @@ import java.time.Duration;
             String actualTitle = driver.getTitle();
             String expectedTitle = "Software Engineering";
             Assert.assertEquals(actualTitle,expectedTitle);
+            Thread.sleep(5000);
         }// End of go_to_subreddit()
 
 }// End of SearchFeature Class

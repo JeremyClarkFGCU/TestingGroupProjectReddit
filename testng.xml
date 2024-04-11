@@ -15,6 +15,12 @@
             </class>
             <class name = "Commenting">
             </class>
+            <class name="Voting">
+            </class>
+            <class name="ProfileMgmt">
+            </class>
+            <class name="SignOut">
+            </class>
         </classes>
 </test>
 </suite>

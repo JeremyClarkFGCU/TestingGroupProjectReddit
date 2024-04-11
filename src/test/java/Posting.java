@@ -11,6 +11,7 @@ import java.time.Duration;
 public class Posting {
 
     WebElement button;
+    String postTitle = "Post Testing Title";
 
     @Test (priority = 8)
     public void find_create_button(){
@@ -28,7 +29,7 @@ public class Posting {
 
 
         WebElement post = wait.until(ExpectedConditions.elementToBeClickable(By.tagName("textArea")));
-        post.sendKeys("this is a test");
+        post.sendKeys(postTitle);
         WebElement text = wait.until(ExpectedConditions.elementToBeClickable(By.className("notranslate")));
         text.sendKeys("⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶\n" +
                 "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿\n" +
@@ -49,9 +50,10 @@ public class Posting {
         // Assertion for test
         Thread.sleep(5000);
         String actualTitle = driver.getTitle();
-        String expectedTitle = "this is a test : r/testingPostFunction";
+        String expectedTitle = (postTitle + " : r/testingPostFunction");
 
         Assert.assertEquals(actualTitle,expectedTitle);
+        Thread.sleep(5000);
     } // End of create_a_post
 
 }

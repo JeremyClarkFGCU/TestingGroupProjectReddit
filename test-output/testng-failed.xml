@@ -6,9 +6,19 @@
       <class name="Commenting">
         <methods>
           <include name="enter_comment"/>
-          <include name="find_comment_field"/>
+          <include name="post_comment"/>
         </methods>
       </class> <!-- Commenting -->
+      <class name="Posting">
+        <methods>
+          <include name="create_a_post"/>
+        </methods>
+      </class> <!-- Posting -->
+      <class name="Voting">
+        <methods>
+          <include name="down_vote"/>
+        </methods>
+      </class> <!-- Voting -->
     </classes>
   </test> <!-- C:/Users/pr0je/Desktop/Spring2024/CEN4072 - Software Testing/FinalGroupProject(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->

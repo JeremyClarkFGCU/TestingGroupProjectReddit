@@ -36,7 +36,7 @@ public class UserAuthentication {
     }// End of navigate_to_reddit
 
     @Test (priority = 2) // Test Case: Invalid Login Attempt
-    void invalid_sign_in(){
+    void invalid_sign_in() throws InterruptedException {
         WebDriver driver = Browser.d;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         String u = invalidUser.get_userName();
@@ -98,6 +98,7 @@ public class UserAuthentication {
         shadowRoot = shadowChild2.getShadowRoot();
         WebElement btnCLose = shadowRoot.findElement(By.cssSelector("#login > faceplate-tabpanel > auth-flow-modal:nth-child(1) > faceplate-tracker > button"));
         btnCLose.click();
+        Thread.sleep(1500);
 
     } // End of Invalid User Attempt Test
 

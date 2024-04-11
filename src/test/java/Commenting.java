@@ -41,6 +41,7 @@ public class Commenting {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement commentField = driver.findElement(By.cssSelector("#main-content > shreddit-async-loader > comment-body-header > shreddit-async-loader > comment-composer-host > faceplate-form > shreddit-composer > div > p"));
         commentField.sendKeys(desiredComment);
+        Thread.sleep(500);
 
     } // End of enter_comment()
 
@@ -56,6 +57,7 @@ public class Commenting {
 
         // scrolls to bottom of page.
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+        Thread.sleep(5000);
 
     }
 
