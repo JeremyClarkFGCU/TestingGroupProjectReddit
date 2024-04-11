@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="C:/Users/pr0je/Desktop/Spring2024/CEN4072 - Software Testing/FinalGroupProject(failed)">
+    <classes>
+      <class name="Commenting">
+        <methods>
+          <include name="enter_comment"/>
+          <include name="find_comment_field"/>
+        </methods>
+      </class> <!-- Commenting -->
+    </classes>
+  </test> <!-- C:/Users/pr0je/Desktop/Spring2024/CEN4072 - Software Testing/FinalGroupProject(failed) -->
+</suite> <!-- Failed suite [All Test Suite] -->

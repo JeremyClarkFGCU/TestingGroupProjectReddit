@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/pr0je/Desktop/Spring2024/CEN4072 - Software Testing/FinalGroupProject">
+        <classes>
+            <class name = "Browser">
+            </class>
+            <class name = "UserAuthentication">
+            </class>
+            <class name = "SearchFeature">
+            </class>
+            <class name="JoinSub">
+            </class>
+            <class name = "Posting">
+            </class>
+            <class name = "Commenting">
+            </class>
+        </classes>
+</test>
+</suite>
